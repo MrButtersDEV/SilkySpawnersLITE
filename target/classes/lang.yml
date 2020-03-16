@@ -1,0 +1,38 @@
+#########################################################################################
+#        _____ _ _ _               _____                                                #
+#       / ____(_) | |             / ____|                                     L I T E   #
+#      | (___  _| | | ___   _    | (___  _ __   __ ___      ___ __   ___ _ __ ___       #
+#       \___ \| | | |/ / | | |    \___ \| '_ \ / _` \ \ /\ / / '_ \ / _ \ '__/ __|      #
+#       ____) | | |   <| |_| |    ____) | |_) | (_| |\ V  V /| | | |  __/ |  \__ \      #
+#      |_____/|_|_|_|\_\\__, |   |_____/| .__/ \__,_| \_/\_/ |_| |_|\___|_|  |___/      #
+#                        __/ |          | |                                             #
+#                       |___/           |_|          L A N G . Y M L                    #
+#                                                                                       #
+#########################################################################################
+# By: BUTTERFIELD8 & The Zircon Network                                                 #
+# Discord: https://discord.gg/7xfSC5p                                                   #
+#########################################################################################
+
+#Chat messages - Edit the plugins messages!
+msgPrefix: "&8[&bSilky&6&lSpawners&8]&r"
+msgNoPerms: "&cYou don't have permission to do that."
+msgFullInv: "&aYour inventory is full. The spawner has been dropped!"
+msgBreakSpawner: "&bYou have broken a spawner."
+msgDiabledAnvil: "&cYou may not rename a spawner."
+msgNotSpawner: "&cThe selected block is not a spawner."
+msgSpawnerChanged: "&bYou changed a spawner to {TYPE}"
+msgSpawnerTypeError: "&cUnknown mob type '{TYPE}' If the mob name has a space use a '_'"
+msgGiveSelf: "&bYou have given yourself a &3{TYPE} &bspawner."
+msgGiveOther: "&bYou have given &3{TARGET} &ba &3{TYPE} &bspawner"
+msgReceiveSpawner: "&bYou received a &3{TYPE} &bspawner."
+msgReload: "&cReloaded!"
+
+#Help Menu [\n ] = New Line
+helpTitle: "&3Silky&6&lSpawners &b<&3< &aHelp Menu &3>&b>\n "
+helpHelp: "&b⛏ &a/Silky help - This Menu"
+helpGive: "&b⛏ &c/Silky give [type] <user> - Gives user a spawner"
+helpSpawner: "&b⛏ &c/Silky type [type] - Change a spawners type"
+helpReload: "&b⛏ &c/Silky reload - Reloads config"
+
+#This is the deny items msg displayed when players try and rename a spawner.
+itemDiabledAnvil: "&cYou may not rename this item."

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="SilkySpawnersLITE:jar">
+    <output-path>D:/Minecraft/Server Stuff/Servers/Plugin Test v2 - 1.15.2/plugins</output-path>
+    <root id="archive" name="SilkySpawnersLITE.jar">
+      <element id="module-output" name="SilkySpawnersLITE" />
+    </root>
+  </artifact>
+</component>
