@@ -1,6 +1,7 @@
 package us.thezircon.play.silkyspawnerslite.commands.SilkySpawner.subcommands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
@@ -27,7 +28,7 @@ public class help extends CMDManager {
     }
 
     @Override
-    public void perform(Player player, String[] args) {
+    public void perform(CommandSender player, String[] args) {
 
         String helpTitle = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("helpTitle"));
         String helpHelp = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("helpHelp"));

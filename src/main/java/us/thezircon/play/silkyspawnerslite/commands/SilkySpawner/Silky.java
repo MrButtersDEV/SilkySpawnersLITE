@@ -2,6 +2,7 @@ package us.thezircon.play.silkyspawnerslite.commands.SilkySpawner;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
@@ -32,17 +33,12 @@ public class Silky implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (sender instanceof Player){
-            Player p = (Player) sender;
-
-            if (args.length > 0){
-                for (int i = 0; i < getSubCommands().size(); i++){
-                    if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())){
-                        getSubCommands().get(i).perform(p, args);
-                    }
+        if (args.length > 0){
+            for (int i = 0; i < getSubCommands().size(); i++){
+                if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())){
+                    getSubCommands().get(i).perform(sender, args);
                 }
             }
-
         }
 
         return true;
@@ -51,6 +47,11 @@ public class Silky implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+
+        if (sender instanceof ConsoleCommandSender) {
+            return null;
+        }
+
         if (args.length == 1){
             ArrayList<String> subcommandsArguments = new ArrayList<>();
 

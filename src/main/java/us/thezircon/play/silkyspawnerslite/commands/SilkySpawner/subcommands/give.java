@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -13,11 +14,14 @@ import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class give extends CMDManager {
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
+
+    private static final Logger log = Logger.getLogger("Minecraft");
 
     @Override
     public String getName() {
@@ -35,7 +39,7 @@ public class give extends CMDManager {
     }
 
     @Override
-    public void perform(Player player, String[] args) {
+    public void perform(CommandSender sender, String[] args) {
 
         String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
         String msgNoperm = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNoPerms"));
@@ -44,34 +48,64 @@ public class give extends CMDManager {
         String msgGiveOther = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveOther"));
         String msgReceiveSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgReceiveSpawner"));
 
-        if (args.length>0){
-            //Get Spawner Type
-            String mobtype = args[1].toUpperCase();
+        if (sender instanceof Player) { // Player
+            Player player = (Player) sender;
 
-            //Give or Drop Spawner
-            ItemStack spawner_to_give = new ItemStack(Material.SPAWNER);
-            BlockStateMeta meta = (BlockStateMeta) spawner_to_give.getItemMeta();
-            CreatureSpawner csm = (CreatureSpawner) meta.getBlockState();
+            if (args.length > 0) {
+                //Get Spawner Type
+                String mobtype = args[1].toUpperCase();
 
-            csm.setSpawnedType(EntityType.valueOf(mobtype));
+                //Give or Drop Spawner
+                ItemStack spawner_to_give = new ItemStack(Material.SPAWNER);
+                BlockStateMeta meta = (BlockStateMeta) spawner_to_give.getItemMeta();
+                CreatureSpawner csm = (CreatureSpawner) meta.getBlockState();
 
-            meta.setBlockState(csm);
-            meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
-            meta.addItemFlags();
-            spawner_to_give.setItemMeta(meta);
+                csm.setSpawnedType(EntityType.valueOf(mobtype));
 
-            if (args.length==2 && player.hasPermission("silkyspawners.give.self")) { // No User Name
-                player.getInventory().addItem(spawner_to_give);
-                player.sendMessage(msgPrefix+ " " + msgGiveSelf.replace("{TYPE}", mobtype));
-            } else if (args.length==3 && player.hasPermission("silkyspawners.give.other")) { // User Name
-                Player target = Bukkit.getPlayer(args[2]);
+                meta.setBlockState(csm);
+                meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
+                meta.addItemFlags();
+                spawner_to_give.setItemMeta(meta);
 
-                target.getInventory().addItem(spawner_to_give);
+                if (args.length == 2 && player.hasPermission("silkyspawners.give.self")) { // No User Name
+                    player.getInventory().addItem(spawner_to_give);
+                    player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobtype));
+                } else if (args.length == 3 && player.hasPermission("silkyspawners.give.other")) { // User Name
+                    Player target = Bukkit.getPlayer(args[2]);
 
-                player.sendMessage(msgPrefix+" " + msgGiveOther.replace("{TYPE}", mobtype).replace("{TARGET}", target.getName().toString()));
-                target.sendMessage(msgPrefix+" "+msgReceiveSpawner.replace("{TYPE}", mobtype));
-            } else {
-                player.sendMessage(msgPrefix+" "+msgNoperm);
+                    target.getInventory().addItem(spawner_to_give);
+
+                    player.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype).replace("{TARGET}", target.getName().toString()));
+                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype));
+                } else {
+                    player.sendMessage(msgPrefix + " " + msgNoperm);
+                }
+            }
+        } else { // Console
+            if (args.length > 0) {
+                //Get Spawner Type
+                String mobtype = args[1].toUpperCase();
+
+                //Give or Drop Spawner
+                ItemStack spawner_to_give = new ItemStack(Material.SPAWNER);
+                BlockStateMeta meta = (BlockStateMeta) spawner_to_give.getItemMeta();
+                CreatureSpawner csm = (CreatureSpawner) meta.getBlockState();
+
+                csm.setSpawnedType(EntityType.valueOf(mobtype));
+
+                meta.setBlockState(csm);
+                meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
+                meta.addItemFlags();
+                spawner_to_give.setItemMeta(meta);
+
+                if (args.length == 3) { // User Name
+                    Player target = Bukkit.getPlayer(args[2]);
+
+                    target.getInventory().addItem(spawner_to_give);
+
+                    sender.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype).replace("{TARGET}", target.getName().toString()));
+                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype));
+                }
             }
         }
     }

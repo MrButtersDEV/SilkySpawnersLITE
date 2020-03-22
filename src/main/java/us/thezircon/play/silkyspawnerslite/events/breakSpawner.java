@@ -32,8 +32,6 @@ public class breakSpawner implements Listener{
         Block block = e.getBlock();
         Location loc = e.getBlock().getLocation();
 
-        System.out.println("breakEvent - Run");
-
         //Drop %
         double spawnerDropChance = plugin.getConfig().getDouble("spawnerDropChance");
         if (spawnerDropChance != 1.00) {
@@ -48,8 +46,6 @@ public class breakSpawner implements Listener{
             if (requireMinePerm && !player.hasPermission("silkyspawners.mine")) {
                 return;
             }
-
-            System.out.println("IS Spawner - Is Silk - has perm");
 
             //Get Spawner
             CreatureSpawner cs = (CreatureSpawner) block.getState();
@@ -67,7 +63,6 @@ public class breakSpawner implements Listener{
 
             spawner_to_give.setItemMeta(meta);
 
-            //ADD INV SIZE CHECK & FLIP
             if (doDrop2Ground) { // Drops Spawner to ground
                 block.getWorld().dropItemNaturally(loc, spawner_to_give);
             } else { // Gives spawner to inventory

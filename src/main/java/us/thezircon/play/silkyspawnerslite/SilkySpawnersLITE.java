@@ -9,6 +9,7 @@ import us.thezircon.play.silkyspawnerslite.events.breakSpawner;
 import us.thezircon.play.silkyspawnerslite.events.placeSpawner;
 import us.thezircon.play.silkyspawnerslite.events.renameSpawner;
 import us.thezircon.play.silkyspawnerslite.utils.Metrics;
+import us.thezircon.play.silkyspawnerslite.utils.VersionChk;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +34,13 @@ public final class SilkySpawnersLITE extends JavaPlugin {
 
         //bStats
         Metrics metrics = new Metrics(this, 6579);
+
+        //Version Check
+        try {
+        VersionChk.checkVersion(this.getName(),76103);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

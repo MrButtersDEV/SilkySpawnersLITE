@@ -29,19 +29,13 @@ public class placeSpawner implements Listener{
         ItemStack placed = e.getItemInHand();
         ItemMeta meta = placed.getItemMeta();
 
-        boolean found = false;
         EntityType entity = null;
-
         try {
             String entityName = ChatColor.stripColor(meta.getDisplayName()).split(" Spawner")[0].replace(" ", "_").toUpperCase();
-            if (!found) {
-                entity = EntityType.valueOf(entityName);
-            }
+            entity = EntityType.valueOf(entityName);
             CreatureSpawner spawner = (CreatureSpawner) block.getState();
             spawner.setSpawnedType(entity);
             spawner.update();
-        } catch (NullPointerException ex) {
-            System.out.println("[SilkyError]" + ChatColor.RED + " SilkySpawners // NULL (PlaceSpawner)");
-        }
+        } catch (Exception ignored) {}
     }
 }
