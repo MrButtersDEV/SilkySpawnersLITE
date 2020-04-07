@@ -54,6 +54,7 @@ public class VersionChk {
         } else {
             plugin.getServer().getConsoleSender().sendMessage(msgPrefix + ChatColor.RED + " UPDATE FOUND: " + ChatColor.GREEN + "https://www.spigotmc.org/resources/"+id+"/");
             plugin.getServer().getConsoleSender().sendMessage(msgPrefix + ChatColor.GOLD + " Version: " + ChatColor.GREEN + response.toString() + ChatColor.AQUA + " Using Version: " + ChatColor.DARK_AQUA + ver);
+            plugin.UP2Date = false;
         }
     }
 

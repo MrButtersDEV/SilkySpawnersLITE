@@ -35,14 +35,16 @@ public class renameSpawner implements Listener {
         }
 
         if (e.getInventory().getType().equals(InventoryType.ANVIL)){
-            if (e.getCurrentItem().getType().equals(Material.SPAWNER)) {
+            if (e.getCurrentItem()!=null && e.getCurrentItem().getType().equals(Material.SPAWNER)) {
                 e.getInventory().setItem(3, denyItem);
                 e.setCancelled(true);
                 player.sendMessage(msgPrefix+" "+msgDiabledAnvil);
-            } else if (e.getCurrentItem().equals(denyItem)) {
+            } else if (e.getCurrentItem()!=null && e.getCurrentItem().equals(denyItem)) {
                 e.setCancelled(true);
             }
         }
+
+
     }
 
 }

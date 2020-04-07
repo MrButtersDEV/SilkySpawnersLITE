@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import us.thezircon.play.silkyspawnerslite.commands.SilkySpawner.Silky;
 import us.thezircon.play.silkyspawnerslite.events.breakSpawner;
 import us.thezircon.play.silkyspawnerslite.events.placeSpawner;
+import us.thezircon.play.silkyspawnerslite.events.playerJoin;
 import us.thezircon.play.silkyspawnerslite.events.renameSpawner;
 import us.thezircon.play.silkyspawnerslite.utils.Metrics;
 import us.thezircon.play.silkyspawnerslite.utils.VersionChk;
@@ -15,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 
 public final class SilkySpawnersLITE extends JavaPlugin {
+
+    public boolean UP2Date = true;
 
     @Override
     public void onEnable() {
@@ -31,6 +34,7 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new breakSpawner(), this);
         getServer().getPluginManager().registerEvents(new placeSpawner(), this);
         getServer().getPluginManager().registerEvents(new renameSpawner(), this);
+        getServer().getPluginManager().registerEvents(new playerJoin(), this);
 
         //bStats
         Metrics metrics = new Metrics(this, 6579);
