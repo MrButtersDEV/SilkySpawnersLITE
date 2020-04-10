@@ -57,20 +57,24 @@ public class breakSpawner implements Listener{
 
             csm.setSpawnedType(cs.getSpawnedType());
 
+            //Spawners Meta
             meta.setBlockState(csm);
             meta.setDisplayName(ChatColor.AQUA + (cs.getSpawnedType().toString().replace("_", " ")) + " Spawner");
             meta.addItemFlags();
 
-            spawner_to_give.setItemMeta(meta);
+            spawner_to_give.setItemMeta(meta); // Set Meta
+
+            //Apply NBT Data
+            ItemStack finalSpawner = plugin.getNMS().set("SilkyMob", spawner_to_give, cs.getSpawnedType().toString());
 
             if (doDrop2Ground) { // Drops Spawner to ground
-                block.getWorld().dropItemNaturally(loc, spawner_to_give);
+                block.getWorld().dropItemNaturally(loc, finalSpawner);
             } else { // Gives spawner to inventory
                 if (player.getInventory().firstEmpty() == -1) {
-                    block.getWorld().dropItemNaturally(loc, spawner_to_give);
+                    block.getWorld().dropItemNaturally(loc, finalSpawner);
                     player.sendMessage(msgPrefix+" "+msgFullInv);
                 } else {
-                    player.getInventory().addItem(spawner_to_give);
+                    player.getInventory().addItem(finalSpawner);
                 }
             }
         }

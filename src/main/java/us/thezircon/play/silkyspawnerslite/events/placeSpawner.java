@@ -27,12 +27,13 @@ public class placeSpawner implements Listener{
         }
 
         ItemStack placed = e.getItemInHand();
-        ItemMeta meta = placed.getItemMeta();
+        //ItemMeta meta = placed.getItemMeta();
 
         EntityType entity = null;
         try {
-            String entityName = ChatColor.stripColor(meta.getDisplayName()).split(" Spawner")[0].replace(" ", "_").toUpperCase();
-            entity = EntityType.valueOf(entityName);
+            //String entityName = ChatColor.stripColor(meta.getDisplayName()).split(" Spawner")[0].replace(" ", "_").toUpperCase();
+            //entity = EntityType.valueOf(entityName);
+            entity = EntityType.valueOf(plugin.getNMS().get("SilkyMob", placed));
             CreatureSpawner spawner = (CreatureSpawner) block.getState();
             spawner.setSpawnedType(entity);
             spawner.update();
