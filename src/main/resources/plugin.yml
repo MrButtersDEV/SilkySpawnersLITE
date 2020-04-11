@@ -10,5 +10,5 @@ commands:
   silky:
     description: Main command for SilkySpawners
     aliases: [silkyspawner]
-  silkytest:
-    description: Test command!
+  checkspawner:
+    description: Checks spawner data

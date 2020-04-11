@@ -6,8 +6,8 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import us.thezircon.play.silkyspawnerslite.commands.CheckSpawner;
 import us.thezircon.play.silkyspawnerslite.commands.SilkySpawner.Silky;
-import us.thezircon.play.silkyspawnerslite.commands.silkytest;
 import us.thezircon.play.silkyspawnerslite.events.breakSpawner;
 import us.thezircon.play.silkyspawnerslite.events.placeSpawner;
 import us.thezircon.play.silkyspawnerslite.events.playerJoin;
@@ -40,7 +40,7 @@ public final class SilkySpawnersLITE extends JavaPlugin {
 
         //Commands
         getCommand("silky").setExecutor(new Silky());
-        getCommand("silkytest").setExecutor(new silkytest());
+        getCommand("checkspawner").setExecutor(new CheckSpawner());
 
         //Events & Listeners
         getServer().getPluginManager().registerEvents(new breakSpawner(), this);
@@ -69,12 +69,13 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         String version = Bukkit.getServer().getClass().getPackage().getName();
         if (version.contains("1_15")) {
             nms = new NMS_1_15();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &&Loading &cNMS&7 version 1.15"));
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.15"));
         } else if (version.contains("1_14")) {
             nms = new NMS_1_14();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &&Loading &cNMS&7 version 1.15"));
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.14"));
         } else {
             nms = new NMS_1_15();
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &4Unknown Version - Trying Latest &7Loading &cNMS&7 version &e1.15"));
         }
     }
 

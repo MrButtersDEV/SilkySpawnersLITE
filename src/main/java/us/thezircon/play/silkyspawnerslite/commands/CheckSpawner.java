@@ -9,9 +9,10 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 
-public class silkytest implements CommandExecutor {
+public class CheckSpawner implements CommandExecutor {
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
 
@@ -22,11 +23,16 @@ public class silkytest implements CommandExecutor {
 
             ItemStack hand = player.getInventory().getItemInMainHand();
 
-            String e = plugin.getNMS().get("SilkyMob", hand);
-            String e2 = plugin.getNMS().get("BlockEntityTag.SpawnData.id", hand);
+            String type1 = plugin.getNMS().get("SilkyMob", hand);
 
-            player.sendMessage("TYPE: " + e);
-            player.sendMessage("E2 - " +e2);
+            BlockStateMeta hand_meta = (BlockStateMeta) hand.getItemMeta();
+            CreatureSpawner cs = (CreatureSpawner) hand_meta.getBlockState();
+
+            String type2 = cs.getSpawnedType().toString();
+
+            player.sendMessage("Display Name: " + hand.getItemMeta().getDisplayName());
+            player.sendMessage("Silky Type: " + type1);
+            player.sendMessage("Spawner Type: " + type2);
 
         }
 

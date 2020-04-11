@@ -10,6 +10,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 
@@ -28,6 +29,13 @@ public class placeSpawner implements Listener{
 
         ItemStack placed = e.getItemInHand();
         //ItemMeta meta = placed.getItemMeta();
+
+        //TEST\
+        System.out.println(placed.toString());
+        BlockStateMeta hand_meta = (BlockStateMeta) placed.getItemMeta();
+        CreatureSpawner cs = (CreatureSpawner) hand_meta.getBlockState();
+        System.out.println(cs.getSpawnedType().toString());
+        /////////////
 
         EntityType entity = null;
         try {
