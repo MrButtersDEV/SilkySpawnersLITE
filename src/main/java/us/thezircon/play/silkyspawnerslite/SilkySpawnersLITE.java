@@ -1,6 +1,7 @@
 package us.thezircon.play.silkyspawnerslite;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -11,6 +12,7 @@ import us.thezircon.play.silkyspawnerslite.events.breakSpawner;
 import us.thezircon.play.silkyspawnerslite.events.placeSpawner;
 import us.thezircon.play.silkyspawnerslite.events.playerJoin;
 import us.thezircon.play.silkyspawnerslite.events.renameSpawner;
+import us.thezircon.play.silkyspawnerslite.nms.NMS_1_14;
 import us.thezircon.play.silkyspawnerslite.nms.NMS_1_15;
 import us.thezircon.play.silkyspawnerslite.nms.nmsHandler;
 import us.thezircon.play.silkyspawnerslite.utils.Metrics;
@@ -67,8 +69,10 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         String version = Bukkit.getServer().getClass().getPackage().getName();
         if (version.contains("1_15")) {
             nms = new NMS_1_15();
-            //System.out.println("[SilkySpawners DEBUG] using NMS version: " + version);
-            //return;
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &&Loading &cNMS&7 version 1.15"));
+        } else if (version.contains("1_14")) {
+            nms = new NMS_1_14();
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &&Loading &cNMS&7 version 1.15"));
         } else {
             nms = new NMS_1_15();
         }

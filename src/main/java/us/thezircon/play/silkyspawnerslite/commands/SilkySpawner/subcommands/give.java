@@ -67,13 +67,15 @@ public class give extends CMDManager {
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
+                ItemStack giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+
                 if (args.length == 2 && player.hasPermission("silkyspawners.give.self")) { // No User Name
-                    player.getInventory().addItem(spawner_to_give);
+                    player.getInventory().addItem(giveItem);
                     player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobtype));
                 } else if (args.length == 3 && player.hasPermission("silkyspawners.give.other")) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);
 
-                    target.getInventory().addItem(spawner_to_give);
+                    target.getInventory().addItem(giveItem);
 
                     player.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype).replace("{TARGET}", target.getName().toString()));
                     target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype));
@@ -98,10 +100,12 @@ public class give extends CMDManager {
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
+                ItemStack giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+
                 if (args.length == 3) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);
 
-                    target.getInventory().addItem(spawner_to_give);
+                    target.getInventory().addItem(giveItem);
 
                     sender.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype).replace("{TARGET}", target.getName().toString()));
                     target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype));

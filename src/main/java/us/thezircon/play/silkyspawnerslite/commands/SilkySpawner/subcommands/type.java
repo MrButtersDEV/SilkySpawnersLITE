@@ -56,7 +56,7 @@ public class type extends CMDManager {
 
             String mobtype = args[1].toUpperCase();
 
-            if (inhand.equals(Material.SPAWNER) && player.hasPermission("silkyspawners.change.hand")) {
+            if (inhand.equals(Material.SPAWNER) && player.hasPermission("silkyspawners.change.hand")) { // HAND
                 // Change type - In hand
                 ItemStack hand = player.getInventory().getItemInMainHand();
                 BlockStateMeta hand_meta = (BlockStateMeta) hand.getItemMeta();
@@ -67,6 +67,12 @@ public class type extends CMDManager {
                 hand_meta.setBlockState(csm);
 
                 hand.setItemMeta(hand_meta);
+
+                ItemStack newHand = plugin.getNMS().set("SilkyMob", hand, csm.getSpawnedType().toString());
+
+                int slot = player.getInventory().getHeldItemSlot();
+                player.getInventory().setItem(slot, newHand);
+                player.updateInventory();
 
                 player.sendMessage(msgPrefix + " " + msgSpawnerChanged.replace("{TYPE}", mobtype));
 
