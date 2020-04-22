@@ -11,6 +11,4 @@ public interface nmsHandler {
     public String get(String key, ItemStack item);
     //public EntityType get(String key, ItemStack item);
 
-    public boolean formated(String key, ItemStack item);
-
 }

@@ -44,22 +44,4 @@ public class NMS_1_15 implements nmsHandler {
         //return entity;
         return nbtKey;
     }
-
-    @Override
-    public boolean formated(String key, ItemStack item) {
-        net.minecraft.server.v1_15_R1.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
-        NBTTagCompound nmsItemCompound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
-
-        if (nmsItemCompound == null) {
-            return false;
-        }
-
-        try {
-            String nbtKey = nmsItemCompound.getString(key);
-            return !nbtKey.equals("");
-        } catch (Exception ignore) {
-            return false;
-        }
-    }
-
 }

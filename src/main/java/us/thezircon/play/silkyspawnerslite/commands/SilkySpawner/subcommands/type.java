@@ -35,7 +35,7 @@ public class type extends CMDManager {
 
     @Override
     public String getSyntax() {
-        return "/silky [spawner|type] <type>";
+        return "/silky type [type]";
     }
 
     @Override
@@ -49,6 +49,11 @@ public class type extends CMDManager {
             String msgNotSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNotSpawner"));
             String msgSpawnerTypeError = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerTypeError"));
             String msgSpawnerChanged = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerChanged"));
+
+            if (!(args.length > 1)) {
+                player.sendMessage(msgPrefix + ChatColor.RED + " " + getSyntax());
+                return;
+            }
 
             //Change Spawner - Looking
             Block target = player.getTargetBlock(null, 5);

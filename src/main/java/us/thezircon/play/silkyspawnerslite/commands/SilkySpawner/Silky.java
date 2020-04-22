@@ -39,6 +39,9 @@ public class Silky implements TabExecutor {
                     getSubCommands().get(i).perform(sender, args);
                 }
             }
+        } else {
+            help helpCmd = new help();
+            helpCmd.perform(sender, args);
         }
 
         return true;

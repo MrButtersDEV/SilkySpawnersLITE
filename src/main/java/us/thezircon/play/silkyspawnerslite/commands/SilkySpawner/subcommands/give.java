@@ -51,7 +51,7 @@ public class give extends CMDManager {
         if (sender instanceof Player) { // Player
             Player player = (Player) sender;
 
-            if (args.length > 0) {
+            if (args.length > 1) {
                 //Get Spawner Type
                 String mobtype = args[1].toUpperCase();
 
@@ -63,7 +63,7 @@ public class give extends CMDManager {
                 csm.setSpawnedType(EntityType.valueOf(mobtype));
 
                 meta.setBlockState(csm);
-                meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
+                meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
@@ -71,17 +71,17 @@ public class give extends CMDManager {
 
                 if (args.length == 2 && player.hasPermission("silkyspawners.give.self")) { // No User Name
                     player.getInventory().addItem(giveItem);
-                    player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobtype));
+                    player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobtype.replace("_", " ")));
                 } else if (args.length == 3 && player.hasPermission("silkyspawners.give.other")) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);
 
                     target.getInventory().addItem(giveItem);
 
-                    player.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype).replace("{TARGET}", target.getName().toString()));
-                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype));
-                } else {
-                    player.sendMessage(msgPrefix + " " + msgNoperm);
+                    player.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype.replace("_", " ")).replace("{TARGET}", target.getName().toString()));
+                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype.replace("_", " ")));
                 }
+            } else {
+                player.sendMessage(msgPrefix + ChatColor.RED + " " + getSyntax());
             }
         } else { // Console
             if (args.length > 0) {
@@ -96,7 +96,7 @@ public class give extends CMDManager {
                 csm.setSpawnedType(EntityType.valueOf(mobtype));
 
                 meta.setBlockState(csm);
-                meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
+                meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
@@ -107,8 +107,8 @@ public class give extends CMDManager {
 
                     target.getInventory().addItem(giveItem);
 
-                    sender.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype).replace("{TARGET}", target.getName().toString()));
-                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype));
+                    sender.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype.replace("_", " ")).replace("{TARGET}", target.getName().toString()));
+                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype.replace("_", " ")));
                 }
             }
         }

@@ -12,9 +12,7 @@ import us.thezircon.play.silkyspawnerslite.events.breakSpawner;
 import us.thezircon.play.silkyspawnerslite.events.placeSpawner;
 import us.thezircon.play.silkyspawnerslite.events.playerJoin;
 import us.thezircon.play.silkyspawnerslite.events.renameSpawner;
-import us.thezircon.play.silkyspawnerslite.nms.NMS_1_14;
-import us.thezircon.play.silkyspawnerslite.nms.NMS_1_15;
-import us.thezircon.play.silkyspawnerslite.nms.nmsHandler;
+import us.thezircon.play.silkyspawnerslite.nms.*;
 import us.thezircon.play.silkyspawnerslite.utils.Metrics;
 import us.thezircon.play.silkyspawnerslite.utils.VersionChk;
 
@@ -73,6 +71,12 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         } else if (version.contains("1_14")) {
             nms = new NMS_1_14();
             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.14"));
+        } else if (version.contains("1_13")) {
+            nms = new NMS_1_13();
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.13"));
+        }  if (version.contains("1_12")) {
+            nms = new NMS_1_12();
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.12"));
         } else {
             nms = new NMS_1_15();
             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &4Unknown Version - Trying Latest &7Loading &cNMS&7 version &e1.15"));
