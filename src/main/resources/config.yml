@@ -13,14 +13,14 @@
 # Discord: https://discord.gg/7xfSC5p                                                   #
 #########################################################################################
 
-#Should players be able to mine spawners without the permission.
-requireMinePerm: false
+#Do players require permission to mine spawners?
+requireMinePerm: true
 
 #Should a minded spawner drop to the ground or to the players inventory. [true=ground | false=inventory]
 doDrop2Ground: true
 
-#Anvil Rename - This will allow players to change a spawners type by renaming it.
-#Please note if 'false' you will not be able to rename spawners!
+#Anvil Rename - This will allow players to change the name of a Spawner
+#Please note if 'true' players will be able to rename spawners and this can be used to scam them!
 anvilRename: false
 
 #Should players be able to mine spawners without the permission.
@@ -28,3 +28,10 @@ requireMineperm: true
 
 #Drop Chance -> 0.00 = 0% | 1.00 = 100%
 spawnerDropChance: 1.00
+
+#Sets the cost of mining a spawner if enabled.
+#PLEASE NOTE: This will require Vault to work!
+chargeOnBreak:
+  enabled: false
+  price: 50.00
+  sendMSG: true

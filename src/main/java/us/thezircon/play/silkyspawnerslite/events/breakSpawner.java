@@ -1,5 +1,6 @@
 package us.thezircon.play.silkyspawnerslite.events;
 
+import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,14 +17,23 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 
+import java.text.DecimalFormat;
+
 public class breakSpawner implements Listener{
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
 
+    private DecimalFormat f = new DecimalFormat("#0.00");
+
     boolean requireMinePerm = plugin.getConfig().getBoolean("requireMinePerm");
     boolean doDrop2Ground = plugin.getConfig().getBoolean("doDrop2Ground");
-    String msgFullInv = plugin.getLangConfig().getString("msgFullInv");
-    String msgPrefix = plugin.getLangConfig().getString("msgPrefix");
+    boolean chargeOnBreak = plugin.getConfig().getBoolean("chargeOnBreak.enabled");
+    boolean sendMSG = plugin.getConfig().getBoolean("chargeOnBreak.sendMSG");
+    double priceOnBreak = plugin.getConfig().getDouble("chargeOnBreak.price");
+    String msgFullInv = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFullInv"));
+    String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
+    String msgChargedOnMine = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgChargedOnMine"));
+    String msgFundsNeeded = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFundsNeeded"));
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBreak(BlockBreakEvent e){
@@ -31,6 +41,8 @@ public class breakSpawner implements Listener{
         Player player = e.getPlayer();
         Block block = e.getBlock();
         Location loc = e.getBlock().getLocation();
+
+        e.setExpToDrop(0); //Disabled XP
 
         //Drop %
         double spawnerDropChance = plugin.getConfig().getDouble("spawnerDropChance");
@@ -45,6 +57,20 @@ public class breakSpawner implements Listener{
 
             if (requireMinePerm && !player.hasPermission("silkyspawners.mine")) {
                 return;
+            }
+
+            if (chargeOnBreak) {
+                EconomyResponse r = plugin.getEconomy().withdrawPlayer(player, priceOnBreak);
+                if(r.transactionSuccess()) {
+                    if (sendMSG) {
+                        player.sendMessage(msgPrefix + " " + msgChargedOnMine.replace("{PRICE}", f.format(priceOnBreak)));
+                    }
+                } else {
+                    player.sendMessage(msgPrefix + " " + msgFundsNeeded);
+                    e.setCancelled(true);
+                    return;
+                }
+
             }
 
             //Get Spawner
