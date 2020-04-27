@@ -16,8 +16,14 @@ public class UpdateConfigs {
 
     public static void config() {
         //Config.yml
-        YamlConfiguration conf = (YamlConfiguration) plugin.getConfig().getDefaults();
+        //YamlConfiguration conf = (YamlConfiguration) plugin.getConfig().getDefaults();
         Random r = new Random();
+        InputStream input = plugin.getResource("config.yml");
+        YamlConfiguration conf = YamlConfiguration.loadConfiguration(new InputStreamReader(input));
+
+        System.out.println("Plugin:" + plugin.getConfig().getKeys(true));
+        System.out.println("Defaults:" + conf.getKeys(true));
+
         for (String key : conf.getKeys(true)) {
             if (!plugin.getConfig().getKeys(true).contains(key)) {
                 File oldConf = new File(plugin.getDataFolder(), "config.yml");

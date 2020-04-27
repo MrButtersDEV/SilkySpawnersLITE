@@ -33,13 +33,13 @@ public final class SilkySpawnersLITE extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
-        //Create Configs
+        //Create & Update Configs
+        File configFile = new File(this.getDataFolder(), "config.yml");
+        if (configFile.exists()) {UpdateConfigs.config();}
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         createLangConfig();
         UpdateConfigs.lang();
-        UpdateConfigs.config();
 
         //NMS Setup & Checks
         setNMSVersion();
@@ -52,7 +52,6 @@ public final class SilkySpawnersLITE extends JavaPlugin {
                 saveConfig();
                 reloadConfig();
             }
-            return;
         }
 
         //Commands

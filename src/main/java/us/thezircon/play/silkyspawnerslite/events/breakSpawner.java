@@ -42,8 +42,6 @@ public class breakSpawner implements Listener{
         Block block = e.getBlock();
         Location loc = e.getBlock().getLocation();
 
-        e.setExpToDrop(0); //Disabled XP
-
         //Drop %
         double spawnerDropChance = plugin.getConfig().getDouble("spawnerDropChance");
         if (spawnerDropChance != 1.00) {
@@ -58,6 +56,8 @@ public class breakSpawner implements Listener{
             if (requireMinePerm && !player.hasPermission("silkyspawners.mine")) {
                 return;
             }
+
+            e.setExpToDrop(0); //Disabled XP
 
             if (chargeOnBreak) {
                 EconomyResponse r = plugin.getEconomy().withdrawPlayer(player, priceOnBreak);

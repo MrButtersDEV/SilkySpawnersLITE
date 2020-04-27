@@ -13,9 +13,6 @@
 # Discord: https://discord.gg/7xfSC5p                                                   #
 #########################################################################################
 
-#Do players require permission to mine spawners?
-requireMinePerm: true
-
 #Should a minded spawner drop to the ground or to the players inventory. [true=ground | false=inventory]
 doDrop2Ground: true
 
