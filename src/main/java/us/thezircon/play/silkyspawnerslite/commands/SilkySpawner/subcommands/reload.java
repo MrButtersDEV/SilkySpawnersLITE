@@ -56,7 +56,18 @@ public class reload extends CMDManager {
     }
 
     @Override
-    public List<String> getSubcommandArguments(Player player, String[] args) {
+    public List<String> arg1(Player player, String[] args) {
         return null;
     }
+
+    @Override
+    public List<String> arg2(Player player, String[] args) {
+        return null;
+    }
+
+    @Override
+    public List<String> arg3(Player player, String[] args) {
+        return null;
+    }
+
 }

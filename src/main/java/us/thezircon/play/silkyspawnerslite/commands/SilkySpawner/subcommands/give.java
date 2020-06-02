@@ -115,7 +115,17 @@ public class give extends CMDManager {
     }
 
     @Override
-    public List<String> getSubcommandArguments(Player player, String[] args) {
+    public List<String> arg1(Player player, String[] args) {
         return Arrays.stream(EntityType.values()).map(EntityType::name).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> arg2(Player player, String[] args) {
+        return null;
+    }
+
+    @Override
+    public List<String> arg3(Player player, String[] args) {
+        return null;
     }
 }

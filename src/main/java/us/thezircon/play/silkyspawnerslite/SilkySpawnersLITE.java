@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import us.thezircon.play.silkyspawnerslite.commands.CheckSpawner;
 import us.thezircon.play.silkyspawnerslite.commands.SilkySpawner.Silky;
 import us.thezircon.play.silkyspawnerslite.events.breakSpawner;
@@ -21,6 +22,7 @@ import us.thezircon.play.silkyspawnerslite.utils.VersionChk;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.logging.Logger;
 
 public final class SilkySpawnersLITE extends JavaPlugin {
@@ -35,7 +37,9 @@ public final class SilkySpawnersLITE extends JavaPlugin {
     public void onEnable() {
         //Create & Update Configs
         File configFile = new File(this.getDataFolder(), "config.yml");
-        if (configFile.exists()) {UpdateConfigs.config();}
+        if (configFile.exists()) {
+            UpdateConfigs.config();
+        }
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         createLangConfig();
@@ -45,7 +49,7 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         setNMSVersion();
 
         //Check for vault
-        if (!setupEconomy() ) {
+        if (!setupEconomy()) {
             log.warning(String.format("[%s] - Some features will be disabled due to not having Vault installed!", getDescription().getName()));
             if (getConfig().getBoolean("chargeOnBreak.enabled")) {
                 getConfig().set("chargeOnBreak.enabled", false);
@@ -68,11 +72,19 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         Metrics metrics = new Metrics(this, 6579);
 
         //Version Check
-        try {
-        VersionChk.checkVersion(this.getName(),76103);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String pluginName = this.getName();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    VersionChk.checkVersion(pluginName, 76103);
+                } catch (UnknownHostException e) {
+                    VersionChk.noConnection();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.run();
     }
 
     @Override

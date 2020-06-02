@@ -55,22 +55,27 @@ public class Silky implements TabExecutor {
             return null;
         }
 
-        if (args.length == 1){
+        if (args.length == 1) {
             ArrayList<String> subcommandsArguments = new ArrayList<>();
 
-            for (int i = 0; i < getSubCommands().size(); i++){
+            for (int i = 0; i < getSubCommands().size(); i++) {
                 subcommandsArguments.add(getSubCommands().get(i).getName());
             }
 
             return subcommandsArguments;
-        }else if(args.length >= 2){
-            for (int i = 0; i < getSubCommands().size(); i++){
-                if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())){
-                    return getSubCommands().get(i).getSubcommandArguments((Player) sender, args);
+        } else if (args.length == 2) {
+            for (int i = 0; i < getSubCommands().size(); i++) {
+                if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())) {
+                    return getSubCommands().get(i).arg1((Player) sender, args);
+                }
+            }
+        } else if (args.length == 3) {
+            for (int i = 0; i < getSubCommands().size(); i++) {
+                if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())) {
+                    return getSubCommands().get(i).arg2((Player) sender, args);
                 }
             }
         }
-
         return null;
     }
 

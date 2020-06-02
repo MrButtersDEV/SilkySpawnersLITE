@@ -58,4 +58,9 @@ public class VersionChk {
         }
     }
 
+    public static void noConnection(){
+        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
+        plugin.getServer().getConsoleSender().sendMessage(msgPrefix + " " + ChatColor.LIGHT_PURPLE + "Cannot check for update's - No internet connection!");
+    }
+
 }

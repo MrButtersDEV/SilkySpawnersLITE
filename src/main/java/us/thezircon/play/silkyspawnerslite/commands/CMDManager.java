@@ -15,7 +15,11 @@ public abstract class CMDManager {
 
     public abstract void perform(CommandSender sender, String args[]);
 
-    public abstract List<String> getSubcommandArguments(Player player, String[] args);
+    public abstract List<String> arg1 (Player player, String args[]);
+
+    public abstract List<String> arg2 (Player player, String args[]);
+
+    public abstract List<String> arg3 (Player player, String args[]);
 
 
 }
