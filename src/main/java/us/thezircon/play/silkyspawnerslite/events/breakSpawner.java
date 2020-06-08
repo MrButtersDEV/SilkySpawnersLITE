@@ -18,6 +18,7 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class breakSpawner implements Listener{
 
@@ -42,6 +43,13 @@ public class breakSpawner implements Listener{
         Block block = e.getBlock();
         Location loc = e.getBlock().getLocation();
 
+        //Check if world is blacklisted
+        World world = player.getWorld();
+        List<String> blacklistedWorlds = plugin.getConfig().getStringList("blacklist");
+        if (blacklistedWorlds.contains(world.getName())) {
+            return;
+        }
+
         //Drop %
         double spawnerDropChance = plugin.getConfig().getDouble("spawnerDropChance");
         if (spawnerDropChance != 1.00) {
@@ -52,6 +60,9 @@ public class breakSpawner implements Listener{
         }
 
         if ((block.getType().equals(Material.SPAWNER)) && (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))){
+
+            // Stop spawners from dropping xp
+            e.setExpToDrop(0);
 
             if (requireMinePerm && !player.hasPermission("silkyspawners.mine")) {
                 return;
