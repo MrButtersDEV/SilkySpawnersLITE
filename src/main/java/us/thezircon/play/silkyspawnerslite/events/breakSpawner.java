@@ -26,18 +26,18 @@ public class breakSpawner implements Listener{
 
     private DecimalFormat f = new DecimalFormat("#0.00");
 
-    boolean requireMinePerm = plugin.getConfig().getBoolean("requireMinePerm");
-    boolean doDrop2Ground = plugin.getConfig().getBoolean("doDrop2Ground");
-    boolean chargeOnBreak = plugin.getConfig().getBoolean("chargeOnBreak.enabled");
-    boolean sendMSG = plugin.getConfig().getBoolean("chargeOnBreak.sendMSG");
-    double priceOnBreak = plugin.getConfig().getDouble("chargeOnBreak.price");
-    String msgFullInv = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFullInv"));
-    String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-    String msgChargedOnMine = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgChargedOnMine"));
-    String msgFundsNeeded = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFundsNeeded"));
-
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBreak(BlockBreakEvent e){
+
+        boolean requireMinePerm = plugin.getConfig().getBoolean("requireMineperm");
+        boolean doDrop2Ground = plugin.getConfig().getBoolean("doDrop2Ground");
+        boolean chargeOnBreak = plugin.getConfig().getBoolean("chargeOnBreak.enabled");
+        boolean sendMSG = plugin.getConfig().getBoolean("chargeOnBreak.sendMSG");
+        double priceOnBreak = plugin.getConfig().getDouble("chargeOnBreak.price");
+        String msgFullInv = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFullInv"));
+        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
+        String msgChargedOnMine = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgChargedOnMine"));
+        String msgFundsNeeded = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFundsNeeded"));
 
         Player player = e.getPlayer();
         Block block = e.getBlock();
