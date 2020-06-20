@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 public final class SilkySpawnersLITE extends JavaPlugin {
 
-    private nmsHandler nms;
+    private static nmsHandler nms;
     private static final Logger log = Logger.getLogger("Minecraft");
     private static Economy econ = null;
 
@@ -113,8 +113,8 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         }
     }
 
-    public nmsHandler getNMS() {
-        return  nms;
+    public static nmsHandler getNMS() {
+        return nms;
     }
 
     //Lang.yml
