@@ -21,8 +21,9 @@ public class UpdateConfigs {
         InputStream input = plugin.getResource("config.yml");
         YamlConfiguration conf = YamlConfiguration.loadConfiguration(new InputStreamReader(input));
 
-        System.out.println("Plugin:" + plugin.getConfig().getKeys(true));
-        System.out.println("Defaults:" + conf.getKeys(true));
+       // Debug
+       // System.out.println("Plugin:" + plugin.getConfig().getKeys(true));
+       // System.out.println("Defaults:" + conf.getKeys(true));
 
         for (String key : conf.getKeys(true)) {
             if (!plugin.getConfig().getKeys(true).contains(key)) {
