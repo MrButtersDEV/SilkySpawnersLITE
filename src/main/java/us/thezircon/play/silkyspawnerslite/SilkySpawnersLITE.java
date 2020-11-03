@@ -109,7 +109,10 @@ public final class SilkySpawnersLITE extends JavaPlugin {
             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.12"));
         } else if (version.contains("1_16_R2")) {
             nms = new NMS_1_16_R2();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.16.2"));
+            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.16.2/1.16.3"));
+        }  else if (version.contains("1_16_R3")) {
+             nms = new NMS_1_16_R3();
+             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.16.4"));
         } else if (version.contains("1_16")) {
             nms = new NMS_1_16();
             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "[&bSilky&6Spawners&7] &7Loading &cNMS&7 version &e1.16"));
