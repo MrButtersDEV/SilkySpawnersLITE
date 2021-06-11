@@ -41,6 +41,7 @@ public class give extends CMDManager {
     @Override
     public void perform(CommandSender sender, String[] args) {
 
+
         String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
         String msgNoperm = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNoPerms"));
         String msgSpawnerTypeError = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerTypeError"));
@@ -100,12 +101,16 @@ public class give extends CMDManager {
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
-                ItemStack giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+                ItemStack giveItem = SilkySpawnersLITE.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
 
                 if (args.length == 3) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);
 
-                    target.getInventory().addItem(giveItem);
+                    if (target != null) {
+                        target.getInventory().addItem(giveItem);
+                    } else {
+                        System.out.println("Invalid target - null");
+                    }
 
                     sender.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype.replace("_", " ")).replace("{TARGET}", target.getName().toString()));
                     target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype.replace("_", " ")));
