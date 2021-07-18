@@ -20,11 +20,12 @@ public class SpawnerGiver {
     private ItemStack giveItem;
     private String mobtype;
 
-    private String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-    private String msgNoperm = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNoPerms"));
-    private String msgGiveSelf = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveSelf"));
-    private String msgGiveOther = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveOther"));
-    private String msgReceiveSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgReceiveSpawner"));
+    private String msgPrefix = HexFormat.format( plugin.getLangConfig().getString("msgPrefix"));
+    private String msgNoperm = HexFormat.format( plugin.getLangConfig().getString("msgNoPerms"));
+    private String msgGiveSelf = HexFormat.format( plugin.getLangConfig().getString("msgGiveSelf"));
+    private String msgGiveOther = HexFormat.format( plugin.getLangConfig().getString("msgGiveOther"));
+    private String msgReceiveSpawner = HexFormat.format( plugin.getLangConfig().getString("msgReceiveSpawner"));
+    String defaultSpawnerName = HexFormat.format( plugin.getLangConfig().getString("spawnerName"));
 
     /**
      * Constructor for deciding what spawner should be used.
@@ -39,7 +40,8 @@ public class SpawnerGiver {
         csm.setSpawnedType(spawnerType);
 
         meta.setBlockState(csm);
-        meta.setDisplayName(ChatColor.AQUA + spawnerType.toString().replace("_", " ") + " Spawner");
+        //meta.setDisplayName(ChatColor.AQUA + spawnerType.toString().replace("_", " ") + " Spawner");
+        meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
         meta.addItemFlags();
         spawner_to_give.setItemMeta(meta);
 

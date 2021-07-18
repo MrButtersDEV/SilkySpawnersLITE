@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 import java.util.List;
 
@@ -30,11 +31,11 @@ public class help extends CMDManager {
     @Override
     public void perform(CommandSender player, String[] args) {
 
-        String helpTitle = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("helpTitle"));
-        String helpHelp = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("helpHelp"));
-        String helpGive = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("helpGive"));
-        String helpSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("helpSpawner"));
-        String helpReload = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("helpReload"));
+        String helpTitle = HexFormat.format( plugin.getLangConfig().getString("helpTitle"));
+        String helpHelp = HexFormat.format( plugin.getLangConfig().getString("helpHelp"));
+        String helpGive = HexFormat.format( plugin.getLangConfig().getString("helpGive"));
+        String helpSpawner = HexFormat.format( plugin.getLangConfig().getString("helpSpawner"));
+        String helpReload = HexFormat.format( plugin.getLangConfig().getString("helpReload"));
 
         player.sendMessage(helpTitle);
         player.sendMessage(helpHelp);

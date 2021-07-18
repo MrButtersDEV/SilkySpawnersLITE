@@ -33,7 +33,7 @@ chargeOnBreak:
   price: 50.00
   sendMSG: true
 
-# Blacklist worlds that you don't want player to be able to mine spawners.
-# This would cause the spawner to break and drop xp for all worlds on the blacklist!
+#Blacklist worlds that you don't want player to be able to mine spawners.
+#This would cause the spawner to break and drop xp for all worlds on the blacklist!
 blacklist:
   - exampleworld

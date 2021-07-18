@@ -16,6 +16,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -34,10 +35,11 @@ public class breakSpawner implements Listener{
         boolean chargeOnBreak = plugin.getConfig().getBoolean("chargeOnBreak.enabled");
         boolean sendMSG = plugin.getConfig().getBoolean("chargeOnBreak.sendMSG");
         double priceOnBreak = plugin.getConfig().getDouble("chargeOnBreak.price");
-        String msgFullInv = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFullInv"));
-        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-        String msgChargedOnMine = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgChargedOnMine"));
-        String msgFundsNeeded = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgFundsNeeded"));
+        String msgFullInv = HexFormat.format(plugin.getLangConfig().getString("msgFullInv"));
+        String msgPrefix = HexFormat.format(plugin.getLangConfig().getString("msgPrefix"));
+        String msgChargedOnMine = HexFormat.format(plugin.getLangConfig().getString("msgChargedOnMine"));
+        String msgFundsNeeded = HexFormat.format(plugin.getLangConfig().getString("msgFundsNeeded"));
+        String defaultSpawnerName = HexFormat.format(plugin.getLangConfig().getString("spawnerName"));
 
         Player player = e.getPlayer();
         Block block = e.getBlock();
@@ -96,7 +98,8 @@ public class breakSpawner implements Listener{
 
             //Spawners Meta
             meta.setBlockState(csm);
-            meta.setDisplayName(ChatColor.AQUA + (cs.getSpawnedType().toString().replace("_", " ")) + " Spawner");
+            //meta.setDisplayName(ChatColor.AQUA + (cs.getSpawnedType().toString().replace("_", " ")) + " Spawner");
+            meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", cs.getSpawnedType().toString().replace("_", " ")));
             meta.addItemFlags();
 
             spawner_to_give.setItemMeta(meta); // Set Meta

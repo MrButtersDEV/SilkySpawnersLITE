@@ -6,6 +6,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -34,9 +35,9 @@ public class reload extends CMDManager {
     @Override
     public void perform(CommandSender sender, String[] args) {
 
-        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-        String msgReload = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgReload"));
-        String msgNoperm = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNoPerms"));
+        String msgPrefix = HexFormat.format( plugin.getLangConfig().getString("msgPrefix"));
+        String msgReload = HexFormat.format( plugin.getLangConfig().getString("msgReload"));
+        String msgNoperm = HexFormat.format( plugin.getLangConfig().getString("msgNoPerms"));
 
         if (sender instanceof Player) {
             Player player = (Player) sender;
