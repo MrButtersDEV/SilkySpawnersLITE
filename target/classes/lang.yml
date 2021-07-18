@@ -40,6 +40,6 @@ helpReload: "&b⛏ &c/Silky reload - Reloads config"
 itemDiabledAnvil: "&cYou may not rename this item."
 
 #Controll the appearance of the name of mined spawners.
-#Supports color codes & hex colors [Hex: &x&0&0&0&0&0&0]
+#Supports color codes & hex colors [Hex: &#000000]
 #Placeholders: {TYPE} = Spigot Entity Name i.e. PIG, SHEEP, or COW
 spawnerName: "&b{TYPE} Spawner"
