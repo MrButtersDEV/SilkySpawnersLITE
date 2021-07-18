@@ -25,6 +25,7 @@ public class SpawnerGiver {
     private String msgGiveSelf = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveSelf"));
     private String msgGiveOther = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveOther"));
     private String msgReceiveSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgReceiveSpawner"));
+    String defaultSpawnerName = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("spawnerName"));
 
     /**
      * Constructor for deciding what spawner should be used.
@@ -39,7 +40,8 @@ public class SpawnerGiver {
         csm.setSpawnedType(spawnerType);
 
         meta.setBlockState(csm);
-        meta.setDisplayName(ChatColor.AQUA + spawnerType.toString().replace("_", " ") + " Spawner");
+        //meta.setDisplayName(ChatColor.AQUA + spawnerType.toString().replace("_", " ") + " Spawner");
+        meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
         meta.addItemFlags();
         spawner_to_give.setItemMeta(meta);
 

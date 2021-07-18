@@ -48,6 +48,7 @@ public class give extends CMDManager {
         String msgGiveSelf = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveSelf"));
         String msgGiveOther = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveOther"));
         String msgReceiveSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgReceiveSpawner"));
+        String defaultSpawnerName = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("spawnerName"));
 
         if (sender instanceof Player) { // Player
             Player player = (Player) sender;
@@ -64,7 +65,9 @@ public class give extends CMDManager {
                 csm.setSpawnedType(EntityType.valueOf(mobtype));
 
                 meta.setBlockState(csm);
-                meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
+                //meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
+                meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
+
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
@@ -97,7 +100,9 @@ public class give extends CMDManager {
                 csm.setSpawnedType(EntityType.valueOf(mobtype));
 
                 meta.setBlockState(csm);
-                meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
+                //meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
+                meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
+
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 

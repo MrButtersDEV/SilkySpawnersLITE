@@ -49,6 +49,7 @@ public class type extends CMDManager {
             String msgNotSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNotSpawner"));
             String msgSpawnerTypeError = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerTypeError"));
             String msgSpawnerChanged = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerChanged"));
+            String defaultSpawnerName = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("spawnerName"));
 
             if (!(args.length > 1)) {
                 player.sendMessage(msgPrefix + ChatColor.RED + " " + getSyntax());
@@ -68,7 +69,8 @@ public class type extends CMDManager {
                 CreatureSpawner csm = (CreatureSpawner) hand_meta.getBlockState();
 
                 csm.setSpawnedType(EntityType.valueOf(mobtype));
-                hand_meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
+                //hand_meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
+                hand_meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
                 hand_meta.setBlockState(csm);
 
                 hand.setItemMeta(hand_meta);
