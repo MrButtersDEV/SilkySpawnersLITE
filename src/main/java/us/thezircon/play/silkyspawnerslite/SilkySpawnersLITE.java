@@ -16,6 +16,7 @@ import us.thezircon.play.silkyspawnerslite.events.placeSpawner;
 import us.thezircon.play.silkyspawnerslite.events.playerJoin;
 import us.thezircon.play.silkyspawnerslite.events.renameSpawner;
 import us.thezircon.play.silkyspawnerslite.nms.*;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 import us.thezircon.play.silkyspawnerslite.utils.Metrics;
 import us.thezircon.play.silkyspawnerslite.utils.UpdateConfigs;
 import us.thezircon.play.silkyspawnerslite.utils.VersionChk;
@@ -51,7 +52,7 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         //Check for vault
         if (!setupEconomy()) {
             //log.warning(String.format("[%s] - Some features will be disabled due to not having Vault installed!", getDescription().getName()));
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &eSome features will be disabled due to not having Vault installed!"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &eSome features will be disabled due to not having Vault installed!"));
             if (getConfig().getBoolean("chargeOnBreak.enabled")) {
                 getConfig().set("chargeOnBreak.enabled", false);
                 saveConfig();
@@ -98,31 +99,31 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         String version = Bukkit.getServer().getClass().getPackage().getName();
         if (version.contains("1_15")) {
             nms = new NMS_1_15();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.15"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.15"));
         } else if (version.contains("1_14")) {
             nms = new NMS_1_14();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.14"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.14"));
         } else if (version.contains("1_13")) {
             nms = new NMS_1_13();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.13"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.13"));
         } else if (version.contains("1_12")) {
             nms = new NMS_1_12();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.12"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.12"));
         } else if (version.contains("1_16_R2")) {
             nms = new NMS_1_16_R2();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.16.2/1.16.3"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.16.2/1.16.3"));
         }  else if (version.contains("1_16_R3")) {
              nms = new NMS_1_16_R3();
-             getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.16.4"));
+             getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.16.4"));
         } else if (version.contains("1_16")) {
             nms = new NMS_1_16();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.16"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.16"));
         } else if (version.contains("1_17")) {
             nms = new NMS_1_17();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.17"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.17"));
         } else {
             nms = new NMS_1_17();
-            getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bSilky&6Spawners&8] &4Unknown Version - Trying Latest &7Loading &cNMS&7 version &e1.17"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &4Unknown Version - Trying Latest &7Loading &cNMS&7 version &e1.17"));
         }
     }
 

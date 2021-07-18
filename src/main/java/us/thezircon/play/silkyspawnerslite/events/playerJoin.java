@@ -15,13 +15,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 public class playerJoin implements Listener {
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
 
-    String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-    String msgUpdate = ChatColor.translateAlternateColorCodes('&', "&6➤ &eClick &6&lHERE&e to view the latest version.");
+    String msgPrefix = HexFormat.format( plugin.getLangConfig().getString("msgPrefix"));
+    String msgUpdate = HexFormat.format( "&6➤ &eClick &6&lHERE&e to view the latest version.");
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {

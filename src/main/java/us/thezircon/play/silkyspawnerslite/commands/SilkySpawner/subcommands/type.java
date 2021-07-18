@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
@@ -44,12 +45,12 @@ public class type extends CMDManager {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-            String msgNoperm = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNoPerms"));
-            String msgNotSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNotSpawner"));
-            String msgSpawnerTypeError = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerTypeError"));
-            String msgSpawnerChanged = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerChanged"));
-            String defaultSpawnerName = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("spawnerName"));
+            String msgPrefix = HexFormat.format( plugin.getLangConfig().getString("msgPrefix"));
+            String msgNoperm = HexFormat.format( plugin.getLangConfig().getString("msgNoPerms"));
+            String msgNotSpawner = HexFormat.format( plugin.getLangConfig().getString("msgNotSpawner"));
+            String msgSpawnerTypeError = HexFormat.format( plugin.getLangConfig().getString("msgSpawnerTypeError"));
+            String msgSpawnerChanged = HexFormat.format( plugin.getLangConfig().getString("msgSpawnerChanged"));
+            String defaultSpawnerName = HexFormat.format( plugin.getLangConfig().getString("spawnerName"));
 
             if (!(args.length > 1)) {
                 player.sendMessage(msgPrefix + ChatColor.RED + " " + getSyntax());

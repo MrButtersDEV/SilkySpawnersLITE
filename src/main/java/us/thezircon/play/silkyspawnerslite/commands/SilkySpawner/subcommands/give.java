@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,13 +43,13 @@ public class give extends CMDManager {
     public void perform(CommandSender sender, String[] args) {
 
 
-        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-        String msgNoperm = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgNoPerms"));
-        String msgSpawnerTypeError = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgSpawnerTypeError"));
-        String msgGiveSelf = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveSelf"));
-        String msgGiveOther = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgGiveOther"));
-        String msgReceiveSpawner = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgReceiveSpawner"));
-        String defaultSpawnerName = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("spawnerName"));
+        String msgPrefix = HexFormat.format(plugin.getLangConfig().getString("msgPrefix"));
+        String msgNoperm = HexFormat.format(plugin.getLangConfig().getString("msgNoPerms"));
+        String msgSpawnerTypeError = HexFormat.format(plugin.getLangConfig().getString("msgSpawnerTypeError"));
+        String msgGiveSelf = HexFormat.format(plugin.getLangConfig().getString("msgGiveSelf"));
+        String msgGiveOther = HexFormat.format(plugin.getLangConfig().getString("msgGiveOther"));
+        String msgReceiveSpawner = HexFormat.format(plugin.getLangConfig().getString("msgReceiveSpawner"));
+        String defaultSpawnerName = HexFormat.format(plugin.getLangConfig().getString("spawnerName"));
 
         if (sender instanceof Player) { // Player
             Player player = (Player) sender;

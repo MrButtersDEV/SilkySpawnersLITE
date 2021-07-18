@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
+import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 public class renameSpawner implements Listener {
 
@@ -19,15 +20,15 @@ public class renameSpawner implements Listener {
     public void onClickEvent(InventoryClickEvent e){
         Player player = (Player) e.getWhoClicked();
 
-        String itemDiabledAnvil = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("itemDiabledAnvil"));
+        String itemDiabledAnvil = HexFormat.format( plugin.getLangConfig().getString("itemDiabledAnvil"));
 
         ItemStack denyItem = new ItemStack(Material.BARRIER);
         ItemMeta meta = denyItem.getItemMeta();
         meta.setDisplayName(itemDiabledAnvil);
         denyItem.setItemMeta(meta);
 
-        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
-        String msgDiabledAnvil = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgDiabledAnvil"));
+        String msgPrefix = HexFormat.format( plugin.getLangConfig().getString("msgPrefix"));
+        String msgDiabledAnvil = HexFormat.format( plugin.getLangConfig().getString("msgDiabledAnvil"));
         Boolean anvilRename = plugin.getConfig().getBoolean("anvilRename");
 
         if (anvilRename) {

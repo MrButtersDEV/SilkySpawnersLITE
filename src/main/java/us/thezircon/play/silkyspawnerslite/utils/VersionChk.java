@@ -20,7 +20,7 @@ public class VersionChk {
 
     public static void checkVersion(String name, int id) throws Exception { //https://api.spigotmc.org/legacy/update.php?resource=76103"
 
-        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
+        String msgPrefix = HexFormat.format(plugin.getLangConfig().getString("msgPrefix"));
 
         String url = "https://api.spigotmc.org/legacy/update.php?resource="+id;
 
@@ -59,7 +59,7 @@ public class VersionChk {
     }
 
     public static void noConnection(){
-        String msgPrefix = ChatColor.translateAlternateColorCodes('&', plugin.getLangConfig().getString("msgPrefix"));
+        String msgPrefix = HexFormat.format(plugin.getLangConfig().getString("msgPrefix"));
         plugin.getServer().getConsoleSender().sendMessage(msgPrefix + " " + ChatColor.LIGHT_PURPLE + "Cannot check for update's - No internet connection!");
     }
 
