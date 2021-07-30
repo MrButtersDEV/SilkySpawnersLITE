@@ -57,14 +57,14 @@ public class give extends CMDManager {
 
             if (args.length > 1) {
                 //Get Spawner Type
-                String mobtype = args[1].toUpperCase();
+                String mobType = args[1].toUpperCase();
 
                 //Give or Drop Spawner
                 ItemStack spawner_to_give = new ItemStack(Material.SPAWNER);
                 BlockStateMeta meta = (BlockStateMeta) spawner_to_give.getItemMeta();
                 CreatureSpawner csm = (CreatureSpawner) meta.getBlockState();
 
-                csm.setSpawnedType(EntityType.valueOf(mobtype));
+                csm.setSpawnedType(EntityType.valueOf(mobType));
 
                 meta.setBlockState(csm);
                 //meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
@@ -76,7 +76,7 @@ public class give extends CMDManager {
                 ItemStack giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
 
                 if (args.length == 2 && player.hasPermission("silkyspawners.give.self")) { // No User Name
-                    player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobtype.replace("_", " ")));
+                    player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobType.replace("_", " ")));
                     player.getInventory().addItem(giveItem);
                 } else if (args.length <= 4 && args.length >= 3 && player.hasPermission("silkyspawners.give.other")) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);
@@ -92,8 +92,8 @@ public class give extends CMDManager {
                     }
                     target.getInventory().addItem(giveItem);
 
-                    player.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobtype.replace("_", " ")).replace("{TARGET}", target.getName().toString()));
-                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobtype.replace("_", " ")));
+                    player.sendMessage(msgPrefix + " " + msgGiveOther.replace("{TYPE}", mobType.replace("_", " ")).replace("{TARGET}", target.getName().toString()));
+                    target.sendMessage(msgPrefix + " " + msgReceiveSpawner.replace("{TYPE}", mobType.replace("_", " ")));
                 }
             } else {
                 player.sendMessage(msgPrefix + ChatColor.RED + " " + getSyntax());
@@ -119,8 +119,13 @@ public class give extends CMDManager {
 
                 ItemStack giveItem = SilkySpawnersLITE.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
 
-                if (args.length == 3) { // User Name
+                if (args.length >= 3 && args.length < 5) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);
+
+                    if (args.length==4) {
+                        int amt = Integer.valueOf(args[3]);
+                        giveItem.setAmount(amt);
+                    }
 
                     if (target != null) {
                         target.getInventory().addItem(giveItem);
