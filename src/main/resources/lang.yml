@@ -32,7 +32,7 @@ msgFundsNeeded: "&cYou cannot afford to do that!"
 #Help Menu [\n ] = New Line
 helpTitle: "&3Silky&6&lSpawners &b<&3< &aHelp Menu &3>&b>\n "
 helpHelp: "&b⛏ &a/Silky help - This Menu"
-helpGive: "&b⛏ &c/Silky give [type] <user> - Gives user a spawner"
+helpGive: "&b⛏ &c/Silky give [type] <user> <amt> - Gives user a spawner"
 helpSpawner: "&b⛏ &c/Silky type [type] - Change a spawners type"
 helpReload: "&b⛏ &c/Silky reload - Reloads config"
 

@@ -47,9 +47,9 @@ public class VersionChk {
         in.close();
 
         //print result
-        String spigotVerison = response.toString();
+        String spigotVersion = response.toString();
         String ver = Bukkit.getServer().getPluginManager().getPlugin(name).getDescription().getVersion();
-        if (spigotVerison.equals(ver)) {
+        if (spigotVersion.equals(ver)) {
             plugin.getServer().getConsoleSender().sendMessage(msgPrefix + " " + ChatColor.DARK_GREEN + "Plugin is up-to-date.");
         } else {
             plugin.getServer().getConsoleSender().sendMessage(msgPrefix + ChatColor.RED + " UPDATE FOUND: " + ChatColor.GREEN + "https://www.spigotmc.org/resources/"+id+"/");
