@@ -32,6 +32,8 @@ public class breakSpawner implements Listener{
 
         boolean requireMinePerm = plugin.getConfig().getBoolean("requireMineperm");
         boolean doDrop2Ground = plugin.getConfig().getBoolean("doDrop2Ground");
+        boolean doPreventBreaking = plugin.getConfig().getBoolean("doPreventBreaking");
+        boolean requireSilk = plugin.getConfig().getBoolean("requireSilk");
         boolean chargeOnBreak = plugin.getConfig().getBoolean("chargeOnBreak.enabled");
         boolean sendMSG = plugin.getConfig().getBoolean("chargeOnBreak.sendMSG");
         double priceOnBreak = plugin.getConfig().getDouble("chargeOnBreak.price");
@@ -40,10 +42,16 @@ public class breakSpawner implements Listener{
         String msgChargedOnMine = HexFormat.format(plugin.getLangConfig().getString("msgChargedOnMine"));
         String msgFundsNeeded = HexFormat.format(plugin.getLangConfig().getString("msgFundsNeeded"));
         String defaultSpawnerName = HexFormat.format(plugin.getLangConfig().getString("spawnerName"));
+        String msgYouMayNotBreakThis = HexFormat.format(plugin.getLangConfig().getString("msgYouMayNotBreakThis"));
 
         Player player = e.getPlayer();
         Block block = e.getBlock();
         Location loc = e.getBlock().getLocation();
+
+        if (requireMinePerm && doPreventBreaking && !player.hasPermission("silkyspawners.mine") && !player.isSneaking()) {
+            e.setCancelled(true);
+            player.sendMessage(msgYouMayNotBreakThis);
+        }
 
         //Check if world is blacklisted
         World world = player.getWorld();
@@ -51,6 +59,8 @@ public class breakSpawner implements Listener{
         if (blacklistedWorlds.contains(world.getName())) {
             return;
         }
+
+
 
         //Drop %
         double spawnerDropChance = plugin.getConfig().getDouble("spawnerDropChance");
@@ -61,7 +71,11 @@ public class breakSpawner implements Listener{
             }
         }
 
-        if ((block.getType().equals(Material.SPAWNER)) && (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))){
+        if (block.getType().equals(Material.SPAWNER)){
+
+            if (requireSilk && (!player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))) {
+                return;
+            }
 
             // Stop spawners from dropping xp
             e.setExpToDrop(0);

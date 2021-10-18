@@ -16,12 +16,19 @@
 #Should a minded spawner drop to the ground or to the players inventory. [true=ground | false=inventory]
 doDrop2Ground: true
 
-#Anvil Rename - This will allow players to change the name of a Spawner
+#If enabled players will need the "silkyspawners.mine" permission to break a spawner.
+#If set to false (default) the spawner will break like a vanilla spawner.
+doPreventBreaking: false
+
+#Anvil Rename - This will allow players to change the name of a Spawner.
 #Please note if 'true' players will be able to rename spawners and this can be used to scam them!
 anvilRename: false
 
 #Should players be able to mine spawners without the permission.
 requireMineperm: true
+
+#Should silk touch be required to break a spawner?
+requireSilk: true
 
 #Drop Chance -> 0.00 = 0% | 1.00 = 100%
 spawnerDropChance: 1.00

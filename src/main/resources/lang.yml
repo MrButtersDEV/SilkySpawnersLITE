@@ -28,6 +28,7 @@ msgReceiveSpawner: "&bYou received a &3{TYPE} &bspawner."
 msgReload: "&cReloaded!"
 msgChargedOnMine: "&7You were charged &6${PRICE} &7for mining a spawner!"
 msgFundsNeeded: "&cYou cannot afford to do that!"
+msgYouMayNotBreakThis: "&eYou do not have permission to silk touch a spawner. You may shift-click while mining to break this spawner."
 
 #Help Menu [\n ] = New Line
 helpTitle: "&3Silky&6&lSpawners &b<&3< &aHelp Menu &3>&b>\n "
