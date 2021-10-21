@@ -16,7 +16,7 @@
 #Should a minded spawner drop to the ground or to the players inventory. [true=ground | false=inventory]
 doDrop2Ground: true
 
-#If enabled players will need the "silkyspawners.mine" permission to break a spawner.
+#If enabled players will need to confirm to break spawners if they do not have the "silkyspawners.mine" permission or silk touch.
 #If set to false (default) the spawner will break like a vanilla spawner.
 doPreventBreaking: false
 

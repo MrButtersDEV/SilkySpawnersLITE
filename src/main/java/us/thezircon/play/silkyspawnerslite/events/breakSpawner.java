@@ -48,19 +48,12 @@ public class breakSpawner implements Listener{
         Block block = e.getBlock();
         Location loc = e.getBlock().getLocation();
 
-        if (requireMinePerm && doPreventBreaking && !player.hasPermission("silkyspawners.mine") && !player.isSneaking()) {
-            e.setCancelled(true);
-            player.sendMessage(msgYouMayNotBreakThis);
-        }
-
         //Check if world is blacklisted
         World world = player.getWorld();
         List<String> blacklistedWorlds = plugin.getConfig().getStringList("blacklist");
         if (blacklistedWorlds.contains(world.getName())) {
             return;
         }
-
-
 
         //Drop %
         double spawnerDropChance = plugin.getConfig().getDouble("spawnerDropChance");
@@ -72,6 +65,12 @@ public class breakSpawner implements Listener{
         }
 
         if (block.getType().equals(Material.SPAWNER)){
+
+            if (requireMinePerm && doPreventBreaking && (!player.hasPermission("silkyspawners.mine") || (requireSilk && (!player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))) && !player.isSneaking())) {
+                e.setCancelled(true);
+                player.sendMessage(msgYouMayNotBreakThis);
+                return;
+            }
 
             if (requireSilk && (!player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))) {
                 return;
