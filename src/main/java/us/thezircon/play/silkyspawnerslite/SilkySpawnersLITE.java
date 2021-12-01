@@ -97,6 +97,7 @@ public final class SilkySpawnersLITE extends JavaPlugin {
 
     private void setNMSVersion() {
         String version = Bukkit.getServer().getClass().getPackage().getName();
+        System.out.println(version);
         if (version.contains("1_15")) {
             nms = new NMS_1_15();
             getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.15"));
@@ -121,9 +122,12 @@ public final class SilkySpawnersLITE extends JavaPlugin {
         } else if (version.contains("1_17")) {
             nms = new NMS_1_17();
             getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.17"));
-        } else {
-            nms = new NMS_1_17();
-            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &4Unknown Version - Trying Latest &7Loading &cNMS&7 version &e1.17"));
+        } else if (version.contains("1_18")) {
+            nms = new NMS_1_18();
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.18"));
+        }else {
+            nms = new NMS_1_18();
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &4Unknown Version - Trying Latest &7Loading &cNMS&7 version &e1.18"));
         }
     }
 
