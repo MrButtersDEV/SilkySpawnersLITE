@@ -18,6 +18,8 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -118,7 +120,22 @@ public class breakSpawner implements Listener{
             spawner_to_give.setItemMeta(meta); // Set Meta
 
             //Apply NBT Data
-            ItemStack finalSpawner = plugin.getNMS().set("SilkyMob", spawner_to_give, cs.getSpawnedType().toString());
+            ItemStack finalSpawner = null;
+            try {
+                finalSpawner = plugin.getNMS().set("SilkyMob", spawner_to_give, cs.getSpawnedType().toString());
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+            } catch (NoSuchMethodException ex) {
+                ex.printStackTrace();
+            } catch (InvocationTargetException ex) {
+                ex.printStackTrace();
+            } catch (InstantiationException ex) {
+                ex.printStackTrace();
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            }
 
             if (doDrop2Ground) { // Drops Spawner to ground
                 block.getWorld().dropItemNaturally(loc, finalSpawner);

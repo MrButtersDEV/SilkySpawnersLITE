@@ -27,12 +27,11 @@
     <orderEntry type="library" name="spigot-1.16.1" level="project" />
     <orderEntry type="library" name="spigot-1.16.2" level="project" />
     <orderEntry type="library" name="spigot-1.16.5" level="project" />
-    <orderEntry type="library" name="spigot-1.17.1" level="project" />
     <orderEntry type="library" name="spigot-1.12" level="project" />
     <orderEntry type="library" name="spigot-1.13.1" level="project" />
     <orderEntry type="library" name="spigot-1.14" level="project" />
     <orderEntry type="library" name="spigot-1.15.2" level="project" />
-    <orderEntry type="library" name="spigot-1.18" level="project" />
+    <orderEntry type="library" name="spigot-1.17" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot:1.18-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: commons-lang:commons-lang:2.6" level="project" />

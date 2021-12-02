@@ -13,6 +13,8 @@ import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
 import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -73,7 +75,22 @@ public class give extends CMDManager {
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
-                ItemStack giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+                ItemStack giveItem = null;
+                try {
+                    giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
 
                 if (args.length == 2 && player.hasPermission("silkyspawners.give.self")) { // No User Name
                     player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobType.replace("_", " ")));
@@ -117,7 +134,22 @@ public class give extends CMDManager {
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
-                ItemStack giveItem = SilkySpawnersLITE.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+                ItemStack giveItem = null;
+                try {
+                    giveItem = SilkySpawnersLITE.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
 
                 if (args.length >= 3 && args.length < 5) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);

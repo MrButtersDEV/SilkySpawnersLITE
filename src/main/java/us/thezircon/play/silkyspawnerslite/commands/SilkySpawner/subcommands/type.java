@@ -15,6 +15,8 @@ import us.thezircon.play.silkyspawnerslite.commands.CMDManager;
 import us.thezircon.play.silkyspawnerslite.utils.HexFormat;
 
 import java.lang.management.PlatformLoggingMXBean;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -76,7 +78,22 @@ public class type extends CMDManager {
 
                 hand.setItemMeta(hand_meta);
 
-                ItemStack newHand = plugin.getNMS().set("SilkyMob", hand, csm.getSpawnedType().toString());
+                ItemStack newHand = null;
+                try {
+                    newHand = plugin.getNMS().set("SilkyMob", hand, csm.getSpawnedType().toString());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
 
                 int slot = player.getInventory().getHeldItemSlot();
                 player.getInventory().setItem(slot, newHand);
