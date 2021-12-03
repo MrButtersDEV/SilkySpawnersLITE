@@ -75,22 +75,7 @@ public class give extends CMDManager {
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
-                ItemStack giveItem = null;
-                try {
-                    giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+                ItemStack giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
 
                 if (args.length == 2 && player.hasPermission("silkyspawners.give.self")) { // No User Name
                     player.sendMessage(msgPrefix + " " + msgGiveSelf.replace("{TYPE}", mobType.replace("_", " ")));
@@ -134,22 +119,8 @@ public class give extends CMDManager {
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
 
-                ItemStack giveItem = null;
-                try {
-                    giveItem = SilkySpawnersLITE.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+                ItemStack giveItem = SilkySpawnersLITE.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+
 
                 if (args.length >= 3 && args.length < 5) { // User Name
                     Player target = Bukkit.getPlayer(args[2]);

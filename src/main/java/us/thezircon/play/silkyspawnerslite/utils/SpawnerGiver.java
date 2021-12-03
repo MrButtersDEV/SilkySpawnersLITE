@@ -48,22 +48,8 @@ public class SpawnerGiver {
         meta.addItemFlags();
         spawner_to_give.setItemMeta(meta);
 
-        this.mobtype = spawnerType.toString();
-        try {
-            this.giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        /*this.mobtype =*/ plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+
     }
 
     /**

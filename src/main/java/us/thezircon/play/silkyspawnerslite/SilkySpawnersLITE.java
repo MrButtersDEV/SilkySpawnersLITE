@@ -120,14 +120,17 @@ public final class SilkySpawnersLITE extends JavaPlugin {
             nms = new NMS_1_16();
             getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.16"));
         } else if (version.contains("1_17")) {
-            nms = new NMS_1_17();
-            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.17"));
+            //nms = new NMS_1_17();
+            nms = new POST_1_17();
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.17 [POST 1.17]"));
         } else if (version.contains("1_18")) {
+            nms = new POST_1_17();
             //nms = new NMS_1_18();
-            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.18"));
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.18 [POST 1.17]"));
         }else {
-           // nms = new NMS_1_18();
-            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &4Unknown Version - Trying Latest &7Loading &cNMS&7 version &e1.18"));
+            nms = new POST_1_17();
+            //nms = new NMS_1_18();
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &4Unknown Version - Using API [POST 1.17]"));
         }
     }
 
