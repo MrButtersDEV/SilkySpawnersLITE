@@ -15,6 +15,7 @@ import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.util.Locale;
 
 public class SpawnerGiver {
 
@@ -44,26 +45,17 @@ public class SpawnerGiver {
 
         meta.setBlockState(csm);
         //meta.setDisplayName(ChatColor.AQUA + spawnerType.toString().replace("_", " ") + " Spawner");
-        meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
+
+        defaultSpawnerName = defaultSpawnerName.replace("{TYPE}", capitalizeWord(csm.getSpawnedType().toString().replace("_", " ")).toLowerCase());
+        defaultSpawnerName = defaultSpawnerName.replace("{TYPE-SPIGOT}", csm.getSpawnedType().toString().replace("_", " "));
+
+        meta.setDisplayName(defaultSpawnerName);
         meta.addItemFlags();
         spawner_to_give.setItemMeta(meta);
 
         this.mobtype = spawnerType.toString();
-        try {
-            this.giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        this.giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+
     }
 
     /**
@@ -117,5 +109,21 @@ public class SpawnerGiver {
      */
     public ItemStack get(){
         return giveItem;
+    }
+
+    /**
+     * Used to format a spawner name from Spigot to Minecraft
+     * @param str
+     * @return
+     */
+    public static String capitalizeWord(String str){
+        String words[]=str.split("\\s");
+        String capitalizeWord="";
+        for(String w:words){
+            String first=w.substring(0,1);
+            String afterfirst=w.substring(1);
+            capitalizeWord+=first.toUpperCase()+afterfirst+" ";
+        }
+        return capitalizeWord.trim();
     }
 }

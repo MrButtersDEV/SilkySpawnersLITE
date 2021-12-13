@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 
 public interface nmsHandler {
 
-    public ItemStack set(String key, ItemStack item, String data) throws ClassNotFoundException, MalformedURLException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
+    public ItemStack set(String key, ItemStack item, String data);
     //public ItemStack set(String key, ItemStack item, EntityType entity);
 
     public String get(String key, ItemStack item);
