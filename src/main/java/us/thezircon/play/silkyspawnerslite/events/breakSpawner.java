@@ -129,22 +129,7 @@ public class breakSpawner implements Listener{
             spawner_to_give.setItemMeta(meta); // Set Meta
 
             //Apply NBT Data
-            ItemStack finalSpawner = null;
-            try {
-                finalSpawner = plugin.getNMS().set("SilkyMob", spawner_to_give, cs.getSpawnedType().toString());
-            } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (MalformedURLException ex) {
-                ex.printStackTrace();
-            } catch (NoSuchMethodException ex) {
-                ex.printStackTrace();
-            } catch (InvocationTargetException ex) {
-                ex.printStackTrace();
-            } catch (InstantiationException ex) {
-                ex.printStackTrace();
-            } catch (IllegalAccessException ex) {
-                ex.printStackTrace();
-            }
+            ItemStack finalSpawner = plugin.getNMS().set("SilkyMob", spawner_to_give, cs.getSpawnedType().toString());
 
             if (doDrop2Ground) { // Drops Spawner to ground
                 block.getWorld().dropItemNaturally(loc, finalSpawner);
