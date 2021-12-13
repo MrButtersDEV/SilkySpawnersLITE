@@ -23,6 +23,8 @@ import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import static us.thezircon.play.silkyspawnerslite.utils.SpawnerGiver.capitalizeWord;
+
 public class breakSpawner implements Listener{
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
@@ -79,13 +81,10 @@ public class breakSpawner implements Listener{
             }
 
             // Check if a tool type is required
-            if (plugin.getConfig().contains("requiredTool")) {
-                Material material = Material.getMaterial(plugin.getConfig().getString("requiredTool"));
-                if (material==null || material.isAir() || material!=player.getInventory().getItemInMainHand().getType()) {
-                    return; // No message needed?
-                }
+            Material material = Material.getMaterial(plugin.getConfig().getString("requiredTool"));
+            if (material!=Material.AIR && material!=player.getInventory().getItemInMainHand().getType()) {
+                return; // No message needed?
             }
-
 
             // Stop spawners from dropping xp
             e.setExpToDrop(0);
@@ -96,7 +95,7 @@ public class breakSpawner implements Listener{
 
             e.setExpToDrop(0); //Disabled XP
 
-            if (chargeOnBreak && player.hasPermission("silkyspawners.charge.exempt")) {
+            if (chargeOnBreak && !player.hasPermission("silkyspawners.charge.exempt")) {
                 EconomyResponse r = plugin.getEconomy().withdrawPlayer(player, priceOnBreak);
                 if(r.transactionSuccess()) {
                     if (sendMSG) {
@@ -123,7 +122,9 @@ public class breakSpawner implements Listener{
             //Spawners Meta
             meta.setBlockState(csm);
             //meta.setDisplayName(ChatColor.AQUA + (cs.getSpawnedType().toString().replace("_", " ")) + " Spawner");
-            meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", cs.getSpawnedType().toString().replace("_", " ")));
+            defaultSpawnerName = defaultSpawnerName.replace("{TYPE-Minecraft}", capitalizeWord(csm.getSpawnedType().toString().toLowerCase().replace("_", " ")));
+            defaultSpawnerName = defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " "));
+            meta.setDisplayName(defaultSpawnerName);
             meta.addItemFlags();
 
             spawner_to_give.setItemMeta(meta); // Set Meta

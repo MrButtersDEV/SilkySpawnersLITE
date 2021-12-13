@@ -28,7 +28,7 @@ public class UpdateConfigs {
         for (String key : conf.getKeys(true)) {
             if (!plugin.getConfig().getKeys(true).contains(key)) {
                 File oldConf = new File(plugin.getDataFolder(), "config.yml");
-                File newConf = new File(plugin.getDataFolder(), "outdated-config-" + LocalDate.now() + " ("+r.nextInt(1000)+")"+".yml");
+                File newConf = new File(plugin.getDataFolder(), "outdated-config-" + LocalDate.now() + " (as of "+VersionChk.getVersion("SilkySpawnersLITE")+")"+".yml");
 
                 oldConf.renameTo(newConf);
                 plugin.getConfig().options().copyDefaults();

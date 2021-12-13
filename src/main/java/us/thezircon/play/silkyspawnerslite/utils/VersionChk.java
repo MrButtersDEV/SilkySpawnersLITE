@@ -64,4 +64,8 @@ public class VersionChk {
         plugin.getServer().getConsoleSender().sendMessage(msgPrefix + " " + ChatColor.LIGHT_PURPLE + "Cannot check for update's - No internet connection!");
     }
 
+    public static String getVersion(String name) {
+        return Bukkit.getServer().getPluginManager().getPlugin(name).getDescription().getVersion();
+    }
+
 }

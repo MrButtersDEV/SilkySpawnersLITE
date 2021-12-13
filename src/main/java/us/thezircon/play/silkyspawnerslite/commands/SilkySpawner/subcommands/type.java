@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static us.thezircon.play.silkyspawnerslite.utils.SpawnerGiver.capitalizeWord;
+
 public class type extends CMDManager {
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
@@ -73,7 +75,11 @@ public class type extends CMDManager {
 
                 csm.setSpawnedType(EntityType.valueOf(mobtype));
                 //hand_meta.setDisplayName(ChatColor.AQUA + mobtype + " Spawner");
-                hand_meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
+
+                defaultSpawnerName = defaultSpawnerName.replace("{TYPE-Minecraft}", capitalizeWord(csm.getSpawnedType().toString().toLowerCase().replace("_", " ")));
+                defaultSpawnerName = defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " "));
+
+                hand_meta.setDisplayName(defaultSpawnerName);
                 hand_meta.setBlockState(csm);
 
                 hand.setItemMeta(hand_meta);

@@ -46,8 +46,10 @@ public class SpawnerGiver {
         meta.setBlockState(csm);
         //meta.setDisplayName(ChatColor.AQUA + spawnerType.toString().replace("_", " ") + " Spawner");
 
-        defaultSpawnerName = defaultSpawnerName.replace("{TYPE}", capitalizeWord(csm.getSpawnedType().toString().replace("_", " ")).toLowerCase());
-        defaultSpawnerName = defaultSpawnerName.replace("{TYPE-SPIGOT}", csm.getSpawnedType().toString().replace("_", " "));
+        System.out.println(capitalizeWord(csm.getSpawnedType().toString().replace("_", " ")).toLowerCase());
+
+        defaultSpawnerName = defaultSpawnerName.replace("{TYPE-Minecraft}", capitalizeWord(csm.getSpawnedType().toString().toLowerCase().replace("_", " ")));
+        defaultSpawnerName = defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " "));
 
         meta.setDisplayName(defaultSpawnerName);
         meta.addItemFlags();

@@ -97,7 +97,6 @@ public final class SilkySpawnersLITE extends JavaPlugin {
 
     private void setNMSVersion() {
         String version = Bukkit.getServer().getClass().getPackage().getName();
-        System.out.println(version);
         if (version.contains("1_15")) {
             nms = new NMS_1_15();
             getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.15"));

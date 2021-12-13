@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import static us.thezircon.play.silkyspawnerslite.utils.SpawnerGiver.capitalizeWord;
+
 public class give extends CMDManager {
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
@@ -70,7 +72,11 @@ public class give extends CMDManager {
 
                 meta.setBlockState(csm);
                 //meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
-                meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
+
+                defaultSpawnerName = defaultSpawnerName.replace("{TYPE-Minecraft}", capitalizeWord(csm.getSpawnedType().toString().toLowerCase().replace("_", " ")));
+                defaultSpawnerName = defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " "));
+
+                meta.setDisplayName(defaultSpawnerName);
 
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);
@@ -114,7 +120,11 @@ public class give extends CMDManager {
 
                 meta.setBlockState(csm);
                 //meta.setDisplayName(ChatColor.AQUA + mobtype.replace("_", " ") + " Spawner");
-                meta.setDisplayName(defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " ")));
+
+                defaultSpawnerName = defaultSpawnerName.replace("{TYPE-Minecraft}", capitalizeWord(csm.getSpawnedType().toString().toLowerCase().replace("_", " ")));
+                defaultSpawnerName = defaultSpawnerName.replace("{TYPE}", csm.getSpawnedType().toString().replace("_", " "));
+
+                meta.setDisplayName(defaultSpawnerName);
 
                 meta.addItemFlags();
                 spawner_to_give.setItemMeta(meta);

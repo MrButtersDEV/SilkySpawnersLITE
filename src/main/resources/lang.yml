@@ -43,4 +43,5 @@ itemDiabledAnvil: "&cYou may not rename this item."
 #Controll the appearance of the name of mined spawners.
 #Supports color codes & hex colors [Hex: &#000000]
 #Placeholders: {TYPE} = Spigot Entity Name i.e. PIG, SHEEP, or COW
-spawnerName: "&b{TYPE} Spawner"
+#Placeholders: {TYPE-Minecraft} = Minecraft Entity Name i.e. Pig, Sheep, or Cow
+spawnerName: "&b{TYPE-Minecraft} Spawner"
