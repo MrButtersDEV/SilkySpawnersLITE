@@ -87,7 +87,7 @@ public class breakSpawner implements Listener{
 
             e.setExpToDrop(0); //Disabled XP
 
-            if (chargeOnBreak) {
+            if (chargeOnBreak && player.hasPermission("silkyspawners.charge.exempt")) {
                 EconomyResponse r = plugin.getEconomy().withdrawPlayer(player, priceOnBreak);
                 if(r.transactionSuccess()) {
                     if (sendMSG) {
