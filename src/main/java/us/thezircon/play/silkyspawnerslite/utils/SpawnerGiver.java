@@ -13,6 +13,9 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import us.thezircon.play.silkyspawnerslite.SilkySpawnersLITE;
 
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+
 public class SpawnerGiver {
 
     SilkySpawnersLITE plugin = SilkySpawnersLITE.getPlugin(SilkySpawnersLITE.class);
@@ -45,8 +48,8 @@ public class SpawnerGiver {
         meta.addItemFlags();
         spawner_to_give.setItemMeta(meta);
 
-        this.mobtype = spawnerType.toString();
-        this.giveItem = plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+        /*this.mobtype =*/ plugin.getNMS().set("SilkyMob", spawner_to_give, csm.getSpawnedType().toString());
+
     }
 
     /**
