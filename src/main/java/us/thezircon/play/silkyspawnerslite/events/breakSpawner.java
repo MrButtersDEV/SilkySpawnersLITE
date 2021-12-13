@@ -78,6 +78,15 @@ public class breakSpawner implements Listener{
                 return;
             }
 
+            // Check if a tool type is required
+            if (plugin.getConfig().contains("requiredTool")) {
+                Material material = Material.getMaterial(plugin.getConfig().getString("requiredTool"));
+                if (material==null || material.isAir() || material!=player.getInventory().getItemInMainHand().getType()) {
+                    return; // No message needed?
+                }
+            }
+
+
             // Stop spawners from dropping xp
             e.setExpToDrop(0);
 
