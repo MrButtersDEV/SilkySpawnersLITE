@@ -126,7 +126,11 @@ public final class SilkySpawnersLITE extends JavaPlugin {
             nms = new POST_1_17();
             //nms = new NMS_1_18();
             getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.18 [POST 1.17]"));
-        }else {
+        } else if (version.contains("1_19")) {
+            nms = new POST_1_17();
+            //nms = new NMS_1_18();
+            getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &7Loading &cNMS&7 version &e1.19 [POST 1.17]"));
+        } else {
             nms = new POST_1_17();
             //nms = new NMS_1_18();
             getServer().getConsoleSender().sendMessage(HexFormat.format("&8[&bSilky&6Spawners&8] &4Unknown Version - Using API [POST 1.17]"));
