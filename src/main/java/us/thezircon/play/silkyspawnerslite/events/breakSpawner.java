@@ -63,7 +63,7 @@ public class breakSpawner implements Listener{
         double spawnerDropChance = plugin.getConfig().getDouble("spawnerDropChance");
         if (spawnerDropChance != 1.00) {
             double dropNum = Math.random();
-            if (dropNum <= spawnerDropChance) {
+            if (dropNum >= spawnerDropChance) {
                 return;
             }
         }
